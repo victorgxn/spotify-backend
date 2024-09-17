@@ -20,7 +20,7 @@ export class SongsService {
     },
   ];
 
-  create(song: song) {
+  create(song) {
     //TODO: Save the song in the database
     this.songs.push(song);
     return this.songs;
