@@ -28,6 +28,7 @@ export class SongsService {
 
   findAll() {
     //TODO: Fetch all songs from the database
+    throw new Error('An error occurred while fetching songs');
     return this.songs;
   }
 }

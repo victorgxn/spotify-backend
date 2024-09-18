@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpException,
+  HttpStatus,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDto } from './dto';
 
@@ -11,7 +20,16 @@ export class SongsController {
   }
   @Get()
   findAll() {
-    return this.songsService.findAll();
+    try {
+      return this.songsService.findAll();
+    } catch (error) {
+      throw new HttpException(
+        'An error occurred while fetching',
+        HttpStatus.FORBIDDEN,{
+          cause: error,
+        }
+      );
+    }
   }
 
   @Get(':id')
